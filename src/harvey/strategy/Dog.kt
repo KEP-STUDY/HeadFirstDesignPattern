@@ -1,7 +1,13 @@
 package harvey.strategy
 
-class Dog {
-    companion object {
-        val name: String = "야옹이"
+open class Dog(
+    private var eatBehavior: EatBehavior = 사료먹기()
+){
+    open fun eat() {
+        eatBehavior.eat()
+    }
+
+    fun changeEatBehavior(eatBehavior: EatBehavior) {
+        this.eatBehavior = eatBehavior
     }
 }
