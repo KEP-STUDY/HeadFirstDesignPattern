@@ -19,6 +19,9 @@ Observer : 구독자
 
 옵저버패턴은 **동기로** 동작한다.
 
+<img width="642" alt="스크린샷 2021-04-30 오후 5 05 48" src="https://user-images.githubusercontent.com/31091115/116666758-50e1c180-a9d6-11eb-8595-8a6d749d75d3.png">
+
+
 # 상속(is-a) 말고 합성(has-a)을
 
 사용해야 하는 이유
