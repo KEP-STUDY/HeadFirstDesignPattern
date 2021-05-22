@@ -1,50 +1,28 @@
-import io.reactivex.Observable
-import io.reactivex.disposables.Disposable
-import io.reactivex.rxkotlin.subscribeBy
-import io.reactivex.subjects.BehaviorSubject
+import observer.LinkedSubject
+import observer.Observable
+import observer.Subject
 import org.junit.Before
 import org.junit.Test
 
 class ObserverTest {
-    private lateinit var disposable: Disposable
-
-    private lateinit var subject: BehaviorSubject<String>
-
-    private val emitDataList = listOf("첫 번째", "두 번째", "세 번째")
+    private lateinit var observables: List<Observable>
+    private lateinit var subject: Subject<String>
 
     @Before
     fun setUp() {
-        subject = BehaviorSubject.create()
+        observables = listOf(Observable("첫번째"), Observable("두번째"), Observable("세번째"))
+        subject = LinkedSubject()
+        observables.forEach {
+            subject.attach(it)
+        }
     }
 
     @Test
-    fun subjectTest() {
-        subject.onNext("안뇽하세욜~~")
-
-        disposable = subject.subscribeBy {
-            println(it+"0")
+    fun observerTest() {
+        (0..3).forEach {
+            subject.emit("$it")
+            subject.notifyObservers()
+            println()
         }
-
-        disposable.dispose()
-
-        assert(disposable.isDisposed)
-    }
-
-    @Test
-    fun observableTest() {
-        disposable = bindData()
-            .subscribeBy {
-                println(it)
-            }
-        disposable.dispose()
-
-        assert(disposable.isDisposed)
-    }
-
-    private fun bindData() = Observable.create<String> { emiiter ->
-        emitDataList.forEach {
-            emiiter.onNext(it)
-        }
-        emiiter.onComplete()
     }
 }
