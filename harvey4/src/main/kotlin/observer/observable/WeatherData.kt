@@ -5,7 +5,7 @@ import observer.displayer.Observer
 
 class WeatherData(
     private var weatherDataSet: WeatherDataSet
-) : Observable {
+) : Subject {
 
     private var observers: MutableList<Observer> = mutableListOf()
 
