@@ -3,8 +3,8 @@ import org.junit.jupiter.api.Test
 
 @Suppress("NonAsciiCharacters")
 class SensorServiceTest {
-//    @Autowired
-    val sensorService=  SensorService()
+    val sensorService = SensorService()
+
     @Test
     fun `공기질 좋음`() {
         val actual = sensorService.readAirQualityStatus(10)
