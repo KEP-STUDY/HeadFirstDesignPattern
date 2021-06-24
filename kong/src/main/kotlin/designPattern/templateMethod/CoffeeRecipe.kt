@@ -22,9 +22,7 @@ class CoffeeRecipe : DrinkRecipeTemplate() {
     }
 
     override fun addAsYouLike(drink: Drink, additionalItems: Set<Ingredient>): Drink {
-        if (additionalItems.contains(Ingredient.LEMON)) {
-            throw Exception("커피에는 레몬이 들어가지 않습니다")
-        }
+        require(!additionalItems.contains(Ingredient.LEMON)) { "커피에는 레몬이 들어가지 않습니다" }
         println(additionalItems.joinToString(", ") + "을 추가합니다.")
         additionalItems.forEach {
             drink.addIngredient(it)

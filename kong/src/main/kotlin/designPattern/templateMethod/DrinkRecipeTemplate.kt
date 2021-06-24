@@ -9,10 +9,10 @@ abstract class DrinkRecipeTemplate {
         return this.addAsYouLike(drinkWithCup, additionalItems)
     }
 
-    abstract fun setUpDrink(): Drink
-    abstract fun boilWater(drink: Drink): Drink
-    abstract fun brew(drink: Drink): Drink
-    abstract fun pourIntoCup(drink: Drink): Drink
-    abstract fun addAsYouLike(drink: Drink, additionalItems: Set<Ingredient>): Drink
+    protected abstract fun setUpDrink(): Drink
+    protected abstract fun boilWater(drink: Drink): Drink
+    protected abstract fun brew(drink: Drink): Drink
+    protected abstract fun pourIntoCup(drink: Drink): Drink
+    protected abstract fun addAsYouLike(drink: Drink, additionalItems: Set<Ingredient>): Drink
 
 }
