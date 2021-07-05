@@ -1,6 +1,6 @@
 package template.mvvm
 
-abstract class Bird<PARAM>(param: PARAM? = null) {
+abstract class Bird<PARAM >(param: PARAM? = null) {
 
     init {
         fly(param)

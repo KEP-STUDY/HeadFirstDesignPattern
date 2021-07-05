@@ -22,7 +22,7 @@ fun main() {
     //  param이 있는 경우
     print("\n\nmvvm\n")
     val duck = Duck()
-    val chicken = Chicken("ㅠㅠ")
+    val chicken = Chicken(Turkey::class)
     val turkey = Turkey(1234L)
 
 }
