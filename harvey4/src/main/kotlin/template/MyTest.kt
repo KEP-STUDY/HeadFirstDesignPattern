@@ -24,5 +24,5 @@ fun main() {
     val duck = Duck()
     val chicken = Chicken("ㅠㅠ")
     val turkey = Turkey(1234L)
-    
+
 }
