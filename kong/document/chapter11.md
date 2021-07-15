@@ -24,6 +24,25 @@ Object proxy=Proxy.newProxyInstance(ClassLoader       // 클래스로더
 
 ![](https://gmoon92.github.io/md/img/aop/jdk-dynamic-proxy-and-cglib/jdk-dynamic-proxy1.png)
 
+```java
+
+@Controller
+public class UserController {
+    @Autowired
+    private MemberService memberService; // <- Runtime Error 발생...
+  ...
+}
+
+@Service
+public class MemberService implements UserService {
+    @Override
+    public Map<String, Object> findUserId(Map<String, Object> params) {
+    ...isLogic
+        return params;
+    }
+}
+```
+
 ### 인터페이스 기준
 
 ``` java
@@ -56,3 +75,15 @@ Object proxy=enhancer.create(); // Proxy 생성
 ```
 
 ![](https://gmoon92.github.io/md/img/aop/jdk-dynamic-proxy-and-cglib/cglib1.png)
+
+https://web.archive.org/web/20150520175004/https://docs.codehaus.org/display/AW/AOP+Benchmark
+
+### 이전에 CGlib 를 사용하지 않은 이유
+
+- 의존성 추가
+- Default 생성자 필요
+- target의 생성자 2번 출출
+
+# REFERENCE
+
+- https://gmoon92.github.io/spring/aop/2019/04/20/jdk-dynamic-proxy-and-cglib.html
