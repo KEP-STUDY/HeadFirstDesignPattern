@@ -17,7 +17,17 @@ fun main() {
             println("impl in proxy ${args?.joinToString(", ")}")
         }
 
-        method.invoke(myHello, *args.orEmpty())
+//        method.invoke(myHello, *args.orEmpty())
+
+
+        when (method.declaringClass) {
+            MyHello::class.java -> method.invoke(myHello, *args.orEmpty())
+            MyHello2::class.java -> method.invoke(myHello2, *args.orEmpty())
+            else -> {
+                println("not proper interface")
+            }
+        }
+
         // interface list의 첫번째가 아닌것은 obj로 사용 불가
         // method.invoke(myHello2, *args.orEmpty())
     }
@@ -25,23 +35,21 @@ fun main() {
 
     //  casting은 되나.. MyHello으로..
     (proxy as MyHello).sayHi("juho", "hello")
-    (proxy as MyHello2).sayHi("juho", "hello")
-    // 함수이름 다른건 또 안됨..
-    // (proxy as MyHello2).sayHi2("juho", "hello")
+    (proxy as MyHello2).sayHi2("juho", "hello")
     println()
     proxy.sayNothing()
 
-    //    abstract class도 사용 불가
-    //    val proxyUseAbs = newProxyInstance(
-    //        Bye::class.java.classLoader,
-    //        arrayOf(Bye::class.java)
-    //    ) { proxy, method, args ->
-    //        if (method.name.contains("say")) {
-    //            println(args?.joinToString(", "))
-    //        }
-    //    } as Bye
-
-    //    proxyUseAbs.sayBye("abstract juho", "bye")
+    //        abstract class도 사용 불가
+    //        val proxyUseAbs = newProxyInstance(
+    //            Bye::class.java.classLoader,
+    //            arrayOf(Bye::class.java)
+    //        ) { proxy, method, args ->
+    //            if (method.name.contains("say")) {
+    //                println(args?.joinToString(", "))
+    //            }
+    //        } as Bye
+    //
+    //        proxyUseAbs.sayBye("abstract juho", "bye")
 
 
 }
